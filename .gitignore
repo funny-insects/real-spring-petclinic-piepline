@@ -1,0 +1,6 @@
+.env
+nexus-data/
+runner-data/
+runner/actions-runner/
+!runner/actions-runner/.gitkeep
+!.gitignore

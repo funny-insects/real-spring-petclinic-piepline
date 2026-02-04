@@ -1,0 +1,35 @@
+services:
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: gha-nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - gha-nexus
+
+  runner:
+    build:
+      context: ./runner
+    container_name: gha-runner
+    environment:
+      GITHUB_URL: ${GITHUB_URL}
+      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      RUNNER_NAME: ${RUNNER_NAME:-petclinic-runner}
+      RUNNER_LABELS: ${RUNNER_LABELS:-linux,arm64}
+      RUNNER_WORKDIR: ${RUNNER_WORKDIR:-_work}
+    volumes:
+      - runner-data:/home/GHA/actions-runner
+    depends_on:
+      - nexus
+    networks:
+      - gha-nexus
+
+volumes:
+  nexus-data:
+  runner-data:
+
+networks:
+  gha-nexus:
+    name: gha-nexus
