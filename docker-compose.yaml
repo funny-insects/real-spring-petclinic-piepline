@@ -10,17 +10,16 @@ services:
       - gha-nexus
 
   runner:
+    env_file: ".env"
     build:
       context: ./runner
     container_name: gha-runner
-    environment:
-      GITHUB_URL: ${GITHUB_URL}
-      RUNNER_TOKEN: ${RUNNER_TOKEN}
-      RUNNER_NAME: ${RUNNER_NAME:-petclinic-runner}
-      RUNNER_LABELS: ${RUNNER_LABELS:-linux,arm64}
-      RUNNER_WORKDIR: ${RUNNER_WORKDIR:-_work}
-    volumes:
-      - runner-data:/home/GHA/actions-runner
+    #environment:
+    #  GITHUB_URL: ${GITHUB_URL}
+    #  RUNNER_TOKEN: ${RUNNER_TOKEN}
+    #  RUNNER_NAME: ${RUNNER_NAME:-petclinic-runner}
+    #  RUNNER_LABELS: ${RUNNER_LABELS:-linux,arm64}
+    #  RUNNER_WORKDIR: ${RUNNER_WORKDIR:-_work}
     depends_on:
       - nexus
     networks:
@@ -28,7 +27,6 @@ services:
 
 volumes:
   nexus-data:
-  runner-data:
 
 networks:
   gha-nexus:

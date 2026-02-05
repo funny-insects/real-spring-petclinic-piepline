@@ -1,6 +1,4 @@
 .env
-nexus-data/
-runner-data/
-runner/actions-runner/
-!runner/actions-runner/.gitkeep
-!.gitignore
+runner/actions-runner/*
+!runner/actions-runner/
+!runner/actions-runner/start.sh
