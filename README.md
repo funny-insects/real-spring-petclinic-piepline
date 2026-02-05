@@ -55,3 +55,7 @@ docker compose up -d
 
 - Nexus data persists via the `nexus-data` volume
 - Runner config persists via the `runner-data` volume (so it won’t re-register each restart)
+
+## TODO:
+- Add runner name to `.env` and add logic to prevent `start.sh` from reconfiguring an existing runner
+- Use the API to create the runner instead to eliminate the need for the short-lived tokens
