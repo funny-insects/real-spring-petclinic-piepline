@@ -6,12 +6,12 @@ Runs a self-hosted GitHub Actions runner (Linux ARM64, for Apple Silicon) and a 
 
 Put the extracted runner tarball contents into:
 
-- `gha-nexus-env/runner/actions-runner/`
+- `runner/actions-runner/`
 
 Example (pick the latest version from https://github.com/actions/runner/releases):
 
 ```bash
-cd gha-nexus-env/runner/actions-runner
+cd runner/actions-runner
 curl -L -o actions-runner-linux-arm64.tar.gz \
   https://github.com/actions/runner/releases/download/v2.322.0/actions-runner-linux-arm64-2.322.0.tar.gz
 
@@ -22,7 +22,7 @@ After extraction, this folder should contain `config.sh`, `run.sh`, `bin/`, etc.
 
 ## 2) Configure environment variables
 
-Create `gha-nexus-env/.env` (not committed) based on `.env.example`.
+Create `.env` (not committed) based on `.env.example`.
 
 You’ll need a runner registration token from your GitHub repo:
 
@@ -31,7 +31,6 @@ You’ll need a runner registration token from your GitHub repo:
 ## 3) Start
 
 ```bash
-cd gha-nexus-env
 docker compose up -d --build
 ```
 
